@@ -11,15 +11,15 @@ if(isset($_POST['submit'])){
 	$fileExt=explode('.', $fileName);
 	$fileActualExt = strtolower(end($fileExt));
 	
-	$allowed = array('cvs');
+	$allowed = array('csv');
 	
 	if(in_array($fileActualExt, $allowed)) {
 		if($fileError === 0){
-			if($fileSize < 100000){
+			if($fileSize < 10000000){
 				$fileNameNew = uniqid('', true).".".$fileActualExt;
 				$fileDestination = 'uploads/'.$fileNameNew;
 				move_uploaded_file($fileTmpName, $fileDestination);
-				header("Location: index.php?uploadsuccess");
+				header("Location: index.html");
 			} else {
 				echo "Your file is too big!";
 			} 
